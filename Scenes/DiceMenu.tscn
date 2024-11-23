@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Dice.gd" id="2_h5nsm"]
 [ext_resource type="Script" path="res://Scripts/buttonRollDice.gd" id="3_p1xi7"]
 
-[node name="Node2D" type="ColorRect"]
+[node name="DiceMenu" type="ColorRect"]
 custom_minimum_size = Vector2(100, 650)
 color = Color(0, 0, 0, 1)
 script = ExtResource("1_rxaud")

@@ -4,7 +4,7 @@ var listAct : Array
 var player : Player
 var playerHover : Player
 var grid : GridInteractive
-
+var offset : Vector2
 var largeurPlateau : int = 10
 var longueurPlateau : int = 12
 # Called when the node enters the scene tree for the first time.
@@ -20,7 +20,7 @@ func _ready() -> void:
 	listAct = []
 	player = find_child("PlayerSprite")
 	playerHover = player.duplicate()
-	self.add_child(playerHover)
+	find_child("Carte").add_child(playerHover)
 	playerHover.modulate.a=0.5
 	grid = find_child("GridInteractive")
 	largeurPlateau = 10
@@ -28,16 +28,31 @@ func _ready() -> void:
 	tour = 0
 	
 	_ajoutEnemy(nbEnemy)
+	find_child("Carte").position.x = find_child("SuzanneMenu").size.x
+	var tileMap : TileMapLayer = find_child("Map")
+	offset=Vector2(find_child("SuzanneMenu").size.x,0)
+	var cells: Array[Vector2i] = []
+	for i in range(int((find_child("DiceMenu").position.x-find_child("SuzanneMenu").size.x)/grid.tile_set.tile_size.x)*4):
+		for j in range(get_viewport().size.y/tileMap.tile_set.tile_size.y):
+			cells.append(Vector2i(i,j))
+	tileMap.set_cells_terrain_connect(cells, 0, 0)
+	
+	tileMap = find_child("Grid")
+	cells = []
+	for i in range(int((find_child("DiceMenu").position.x-find_child("SuzanneMenu").size.x)/grid.tile_set.tile_size.x)):
+		for j in range(get_viewport().size.y/tileMap.tile_set.tile_size.y):
+			tileMap.set_cell(Vector2i(i,j),0,Vector2i(0,0)) 
+			grid.maxTile=Vector2i(i,j)
 	
 	pass # Replace with function body.
 
 func _ajoutEnemy(nbEnemy : int) -> void:
 	for i in nbEnemy:
 		var nodeEnemy = enemy.instantiate()
-		add_child(nodeEnemy)
+		find_child("Carte").add_child(nodeEnemy)
 		nodeEnemy.G = self
 		nodeEnemy.map = grid
-		nodeEnemy.position = Vector2(randi() % (longueurPlateau), randi() % (largeurPlateau)) * 64
+		nodeEnemy.position = Vector2(randi() % (longueurPlateau), randi() % (largeurPlateau)) * 64 + offset
 		nodeEnemy.scale *= nodeEnemy.map.tile_set.tile_size.x / nodeEnemy.texture.get_size().x
 		nodeEnemy.offset = nodeEnemy.texture.get_size()/2
 		
@@ -50,9 +65,14 @@ func _actionsEnemy() -> void:
 		listeEnemy[n]._deplacement()
 	pass
 	
+func getEnemy(pos :Vector2i)->int:
+	var enemies :Array = listeEnemy.filter(func(a:Enemy): return a.cellPos() == pos)
+	if enemies.size() ==0:
+		return -1
+	return listeEnemy.find(enemies[0])
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var pos :Vector2i = floor(get_viewport().get_mouse_position()/64)
+	var pos :Vector2i = floor((get_viewport().get_mouse_position()-offset)/64)
 	if(grid.get_cell_source_id(pos)==0):
 		playerHover.ToCellPos(pos)
 		nextpos = pos
@@ -80,6 +100,7 @@ func interpretAction():
 	var nbatk : int = listAct.count(0)
 	var nbdef : int = listAct.count(1)
 	var nbmov : int = listAct.count(2)
+	print("offset=",offset)
 	print("nbatk=",nbatk)
 	print("nbdef=",nbdef)
 	print("nbmov=",nbmov)
@@ -116,20 +137,21 @@ func interpretAction():
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		var pos : Vector2i = floor(event.position/64)
+		var pos : Vector2i = floor((event.position-offset)/64)
+		# Quand il n'y a pas de déplacement
 		if(nextpos!=null and nextpos!=Vector2i(-1,-1)):
-			if (listAct.count(1)==0 and listeEnemy.filter(func(a:Enemy): return a.cellPos() != nextpos).size()!=0):
+			if (getEnemy(nextpos) == -1):
 				player.ToCellPos(nextpos)
 				grid.cleanCells()
 				listAct=[]
-			elif(listAct.count(1)!=0):
-				listeEnemy[0].ToCellPos(listeEnemy[0].cellPos() + Vector2i((nextpos - player.cellPos())/(nextpos - player.cellPos()).length()*listAct.count(1)))
+			elif(listAct.count(DiceFace.DEF)!=0):
+				listeEnemy[getEnemy(nextpos)].ToCellPos(listeEnemy[getEnemy(nextpos)].cellPos() + Vector2i((nextpos - player.cellPos())/(nextpos - player.cellPos()).length()*listAct.count(1)))
 				player.ToCellPos(nextpos)
 				grid.cleanCells()
 				listAct=[]
-		if (listeEnemy.filter(func(a:Enemy): return a.cellPos() == pos).size()!=0 and grid.get_cell_source_id(pos)==1):
-			if(listAct.count(1)!=0):
-				listeEnemy[0].ToCellPos(listeEnemy[0].cellPos() + Vector2i((pos - player.cellPos())/(pos - player.cellPos()).length()*listAct.count(1)))
+		if (getEnemy(pos)!=-1 and grid.get_cell_source_id(pos)==1):
+			if(listAct.count(DiceFace.DEF)!=0):
+				listeEnemy[getEnemy(pos)].ToCellPos(listeEnemy.filter(func(a:Enemy): return a.cellPos() == pos)[0].cellPos() + Vector2i((pos - player.cellPos())/(pos - player.cellPos()).length()*listAct.count(1)))
 				grid.cleanCells()
 				listAct=[]
 	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_ESCAPE:
