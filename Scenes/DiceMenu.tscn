@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://q6tdu07tfo2c"]
 
 [ext_resource type="Script" path="res://Scripts/dice_menuScript.gd" id="1_rxaud"]
-[ext_resource type="Script" path="res://Dice.gd" id="2_h5nsm"]
+[ext_resource type="Script" path="res://Scripts/Dice.gd" id="2_h5nsm"]
 
 [node name="Node2D" type="ColorRect"]
 custom_minimum_size = Vector2(400, 650)
