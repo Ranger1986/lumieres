@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://q6tdu07tfo2c"]
+[gd_scene load_steps=4 format=3 uid="uid://q6tdu07tfo2c"]
 
 [ext_resource type="Script" path="res://Scripts/dice_menuScript.gd" id="1_rxaud"]
 [ext_resource type="Script" path="res://Dice.gd" id="2_h5nsm"]
+[ext_resource type="Script" path="res://Scenes/buttonRollDice.gd" id="3_p1xi7"]
 
 [node name="Node2D" type="ColorRect"]
 custom_minimum_size = Vector2(400, 650)
@@ -45,3 +46,4 @@ test = "Mouvement"
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "ROLL"
+script = ExtResource("3_p1xi7")
