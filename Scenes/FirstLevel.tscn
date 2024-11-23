@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://b2dbsmeeg3bvf"]
+[gd_scene load_steps=20 format=4 uid="uid://b2dbsmeeg3bvf"]
 
 [ext_resource type="Texture2D" uid="uid://lp8n6q8jimyt" path="res://Ressources/plains.png" id="1_5wq52"]
 [ext_resource type="Script" path="res://Scripts/gestionnaireScript.gd" id="1_7rd8c"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://js0ygvtxjnqg" path="res://Ressources/cellatk.png" id="6_0m423"]
 [ext_resource type="Texture2D" uid="uid://cp5kd7t5mw71e" path="res://icon.svg" id="6_8s5dr"]
 [ext_resource type="Script" path="res://Scripts/enemyScript.gd" id="7_r5cpj"]
+[ext_resource type="PackedScene" uid="uid://2yfh1ym5qlqm" path="res://Scenes/SuzanneMenu.tscn" id="11_bwnid"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vakbs"]
 texture = ExtResource("1_5wq52")
@@ -269,8 +270,8 @@ tile_set = SubResource("TileSet_gaon3")
 script = ExtResource("5_utiuj")
 
 [node name="Node2D" parent="." node_paths=PackedStringArray("G") instance=ExtResource("3_n5ntv")]
-offset_right = 400.0
-offset_bottom = 400.0
+offset_right = 100.0
+offset_bottom = 650.0
 G = NodePath("..")
 
 [node name="PlayerSprite" parent="." instance=ExtResource("2_geuij")]
@@ -279,3 +280,7 @@ G = NodePath("..")
 position = Vector2(-125, 0)
 texture = ExtResource("6_8s5dr")
 script = ExtResource("7_r5cpj")
+
+[node name="SuzanneMenu" parent="." instance=ExtResource("11_bwnid")]
+offset_right = 100.0
+offset_bottom = 650.0
