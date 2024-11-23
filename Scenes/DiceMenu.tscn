@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://q6tdu07tfo2c"]
+
+[ext_resource type="Script" path="res://Scripts/dice_menuScript.gd" id="1_rxaud"]
+[ext_resource type="Script" path="res://Dice.gd" id="2_h5nsm"]
+
+[node name="Node2D" type="ColorRect"]
+custom_minimum_size = Vector2(400, 650)
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_rxaud")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 650)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+color = Color(0.525101, 0.525101, 0.525101, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ColorRect"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 400.0
+
+[node name="D1" type="Button" parent="VBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Dé 1"
+script = ExtResource("2_h5nsm")
+test = "Attaque"
+
+[node name="D2" type="Button" parent="VBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Dé 1"
+script = ExtResource("2_h5nsm")
+test = "Défense"
+
+[node name="D3" type="Button" parent="VBoxContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Dé 3"
+script = ExtResource("2_h5nsm")
+test = "Mouvement"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "ROLL"
