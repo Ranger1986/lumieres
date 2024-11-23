@@ -4,10 +4,15 @@ var listAct : Array
 var player : Player
 var playerHover : Player
 var grid : GridInteractive
+
+var largeurPlateau : int = 10
+var longueurPlateau : int = 12
 # Called when the node enters the scene tree for the first time.
 var tour : int
 var listeEnemy : Array
 var tailleListeEnemy : int
+var nbEnemy : int = 4
+@export var enemy: PackedScene
 
 var nextpos : Vector2i
 
@@ -18,15 +23,31 @@ func _ready() -> void:
 	self.add_child(playerHover)
 	playerHover.modulate.a=0.5
 	grid = find_child("GridInteractive")
+	largeurPlateau = 10
+	longueurPlateau = 12
 	tour = 0
-	tailleListeEnemy = find_children("", "Enemy").size()
+	
+	_ajoutEnemy(nbEnemy)
+	
 	pass # Replace with function body.
 
+func _ajoutEnemy(nbEnemy : int) -> void:
+	for i in nbEnemy:
+		var nodeEnemy = enemy.instantiate()
+		add_child(nodeEnemy)
+		nodeEnemy.G = self
+		nodeEnemy.map = grid
+		nodeEnemy.position = Vector2(randi() % (longueurPlateau), randi() % (largeurPlateau)) * 64
+		nodeEnemy.scale *= nodeEnemy.map.tile_set.tile_size.x / nodeEnemy.texture.get_size().x
+		nodeEnemy.offset = nodeEnemy.texture.get_size()/2
+		
+		listeEnemy.append(nodeEnemy)
+		tailleListeEnemy += 1
+	pass
+
 func _actionsEnemy() -> void:
-	print(tailleListeEnemy)
-	#grid.markedCells.find(player.cellPos()+Vector2i(1,0))!=-1
 	for n in tailleListeEnemy:
-		listeEnemy[0]._deplacement()
+		listeEnemy[n]._deplacement()
 	pass
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

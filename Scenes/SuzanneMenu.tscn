@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://2yfh1ym5qlqm"]
 
-[ext_resource type="Script" path="res://Scenes/SuzanneMenu.gd" id="1_1woc4"]
+[ext_resource type="Script" path="res://SuzanneMenu.gd" id="1_1woc4"]
 [ext_resource type="Texture2D" uid="uid://cmhvlp2qokpa1" path="res://Ressources/suzanne.png" id="2_b6tca"]
 [ext_resource type="Texture2D" uid="uid://cnkj650fe7jsl" path="res://Ressources/d6.png" id="3_son3u"]
 [ext_resource type="Texture2D" uid="uid://17fbqjj8vejl" path="res://Ressources/d20.png" id="4_sic0u"]
