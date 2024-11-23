@@ -279,6 +279,7 @@ script = ExtResource("5_utiuj")
 position = Vector2(-125, 0)
 texture = ExtResource("6_8s5dr")
 script = ExtResource("7_r5cpj")
+_PVmax = 0
 
 [node name="SuzanneMenu" parent="." instance=ExtResource("10_1wojv")]
 offset_right = 100.0
