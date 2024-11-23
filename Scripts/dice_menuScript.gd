@@ -4,8 +4,8 @@ extends ColorRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	custom_minimum_size=Vector2i(floor(get_viewport_rect().size.x/3),get_viewport_rect().size.y)
-	position=Vector2i(floor(2*get_viewport_rect().size.x/3),0)
+	custom_minimum_size=Vector2i(floor(get_viewport_rect().size.x/12),get_viewport_rect().size.y)
+	position=Vector2i(floor(11*get_viewport_rect().size.x/12),0)
 	pass # Replace with function body.
 
 

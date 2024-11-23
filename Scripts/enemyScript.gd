@@ -43,3 +43,8 @@ func _deplacement() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func cellPos()->Vector2i:
+	return position/map.tile_set.tile_size.x
+func ToCellPos(pos : Vector2i)-> void:
+	position = pos * 64
