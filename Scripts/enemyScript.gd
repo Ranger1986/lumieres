@@ -1,18 +1,10 @@
 class_name Enemy
-
-extends Sprite2D
+extends Entity
 
 @export var G : Gestionnaire
-@export var _PVmax : int = 40
-var PV : int
 
-var map : TileMapLayer
 var finTour : bool
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	PV=_PVmax
-	pass # Replace with function body.
 
 func deplacementRandom() -> Vector2:
 	var random : int
@@ -48,9 +40,9 @@ func _deplacement() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	
-func cellPos()->Vector2i:
-	return position/map.tile_set.tile_size.x
-func ToCellPos(pos : Vector2i)-> void:
-	position = pos * 64
-	
+
+func damaged(dmg:int):
+	PV-=dmg
+	if PV <=0:
+		G.listeEnemy.pop_at(G.listeEnemy.find(self))
+		queue_free()

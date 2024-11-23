@@ -1,6 +1,6 @@
 class_name Gestionnaire
 extends Node
-var listAct : Array
+var listAct : Array[int]
 var player : Player
 var playerHover : Player
 var grid : GridInteractive
@@ -9,7 +9,7 @@ var largeurPlateau : int = 10
 var longueurPlateau : int = 12
 # Called when the node enters the scene tree for the first time.
 var tour : int
-var listeEnemy : Array
+var listeEnemy : Array[Enemy]
 var tailleListeEnemy : int
 var nbEnemy : int = 4
 @export var enemy: PackedScene
@@ -96,14 +96,14 @@ func giveAct(diceFace: int ):
 func interpretAction():
 	grid.cleanCells()
 	listAct.sort()
-	print(listAct)
+	#print(listAct)
 	var nbatk : int = listAct.count(0)
 	var nbdef : int = listAct.count(1)
 	var nbmov : int = listAct.count(2)
-	print("offset=",offset)
-	print("nbatk=",nbatk)
-	print("nbdef=",nbdef)
-	print("nbmov=",nbmov)
+	#print("offset=",offset)
+	#print("nbatk=",nbatk)
+	#print("nbdef=",nbdef)
+	#print("nbmov=",nbmov)
 	if nbmov == listAct.size():
 		for i in range(-nbmov, nbmov+1):
 			for j in range(-nbmov, nbmov+1):
@@ -139,21 +139,25 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		var pos : Vector2i = floor((event.position-offset)/64)
 		# Quand il n'y a pas de déplacement
+		var acted :bool = false
 		if(nextpos!=null and nextpos!=Vector2i(-1,-1)):
 			if (getEnemy(nextpos) == -1):
 				player.ToCellPos(nextpos)
-				grid.cleanCells()
-				listAct=[]
+				acted = true
 			elif(listAct.count(DiceFace.DEF)!=0):
 				listeEnemy[getEnemy(nextpos)].ToCellPos(listeEnemy[getEnemy(nextpos)].cellPos() + Vector2i((nextpos - player.cellPos())/(nextpos - player.cellPos()).length()*listAct.count(1)))
 				player.ToCellPos(nextpos)
-				grid.cleanCells()
-				listAct=[]
+				acted = true
 		if (getEnemy(pos)!=-1 and grid.get_cell_source_id(pos)==1):
+			player.attackD(listeEnemy[getEnemy(pos)],listAct)
 			if(listAct.count(DiceFace.DEF)!=0):
-				listeEnemy[getEnemy(pos)].ToCellPos(listeEnemy.filter(func(a:Enemy): return a.cellPos() == pos)[0].cellPos() + Vector2i((pos - player.cellPos())/(pos - player.cellPos()).length()*listAct.count(1)))
-				grid.cleanCells()
-				listAct=[]
+				listeEnemy[getEnemy(pos)].ToCellPos(listeEnemy[getEnemy(pos)].cellPos() + Vector2i((pos - player.cellPos())/(pos - player.cellPos()).length()*listAct.count(1)))
+			acted = true
+			
+		
+		if acted:
+			grid.cleanCells()
+			listAct=[]
 	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_ESCAPE:
 		listAct.pop_back()
 		interpretAction()
