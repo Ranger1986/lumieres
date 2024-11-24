@@ -42,6 +42,10 @@ func _ready() -> void:
 		find_child("Suzanne").queue_free()
 		
 		Player.player.ToCellPos(Vector2i(longueurPlateau/2, largeurPlateau - 2))
+		
+		var audioStreamPlayer2D : Array = self.find_children("SonAmbient", "AudioStreamPlayer2D")
+		audioStreamPlayer2D[0].stream = load("res://Ressources/Sounds/creepy.mp3")
+		audioStreamPlayer2D[0].playing = true
 	else:
 		_ajoutEnemy(nbEnemy)
 
@@ -228,7 +232,7 @@ func _showCapturables():
 			grid.markCaptureCells([en.cellPos()],3)
 			
 func _deathSound():
-	var audioStreamPlayer2D : Array = self.find_children("", "AudioStreamPlayer2D")
+	var audioStreamPlayer2D : Array = self.find_children("AudioStreamPlayer2D", "AudioStreamPlayer2D")
 	audioStreamPlayer2D[0].stream = audioDeath
 	audioStreamPlayer2D[0].playing = true
 	
