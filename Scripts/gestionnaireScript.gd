@@ -13,6 +13,7 @@ var listeEnemy : Array[Enemy]
 static var nbEnemy : int = 4
 @export var enemy: PackedScene
 var nextpos : Vector2i
+var audioDeath = load("res://Ressources/Sounds/Enemy_death.ogg")
 static var progress: int = 1
 
 signal S()
@@ -31,7 +32,7 @@ func _ready() -> void:
 	_ajoutEnemy(nbEnemy)
 	for enemy in listeEnemy:
 		enemy.connect("loot", Callable(find_child("DiceMenu"), "_addDice"))
-		enemy.connect("capturesignal", Callable(find_child("SuzanneMenu"), "_getCapture"))
+		enemy.connect("loot", Callable(self, "_deathSound"))
 	find_child("Carte").position.x = find_child("SuzanneMenu").size.x
 	var tileMap : TileMapLayer = find_child("Map")
 	offset=Vector2(find_child("SuzanneMenu").size.x,0)
@@ -200,3 +201,9 @@ func _showCapturables():
 	for en :Enemy in listeEnemy:
 		if en.PV < en.seuilPV:
 			grid.markCaptureCells([en.cellPos()],3)
+			
+func _deathSound():
+	var audioStreamPlayer2D : Array = self.find_children("", "AudioStreamPlayer2D")
+	audioStreamPlayer2D[0].stream = audioDeath
+	audioStreamPlayer2D[0].playing = true
+	

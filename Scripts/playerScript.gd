@@ -5,6 +5,7 @@ extends Entity
 @export var startingPos : Vector2i = Vector2i(0,0)
 static var player : Player
 var audio : Array
+var audioArmor : Array
 
 func _ready():
 	super._ready()
@@ -14,6 +15,9 @@ func _ready():
 	audio.append(load("res://Ressources/Sounds/Player_hurt1.ogg"))
 	audio.append(load("res://Ressources/Sounds/Player_hurt2.ogg"))
 	audio.append(load("res://Ressources/Sounds/Player_hurt3.ogg"))
+	
+	audioArmor.append(load("res://Ressources/Sounds/Equip_Armor1.ogg"))
+	audioArmor.append(load("res://Ressources/Sounds/Equip_Armor2.ogg"))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -37,6 +41,10 @@ func attackD(opp : Entity, listAct : Array[int])->void:
 	opp.damaged(dmgTot)
 
 func defenceD(listAct : Array[int])->void:
+	var audioStreamPlayer2D : Array = self.find_children("", "AudioStreamPlayer2D")
+	var rand : int = randi() % 2
+	audioStreamPlayer2D[0].stream = audioArmor[rand]
+	audioStreamPlayer2D[0].playing = true
 	armure += (defence + listAct.count(DiceFace.DEF))*listAct.count(DiceFace.DEF)
 	
 func death():
