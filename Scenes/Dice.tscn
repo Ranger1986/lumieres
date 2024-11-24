@@ -13,7 +13,6 @@ texture_normal = ExtResource("1_oay02")
 texture_pressed = ExtResource("2_fgl8v")
 texture_hover = ExtResource("3_rsl1m")
 texture_disabled = ExtResource("4_vk2t0")
-texture_focused = ExtResource("2_fgl8v")
 script = ExtResource("2_tt8vw")
 
 [node name="TextureRect" type="TextureRect" parent="."]

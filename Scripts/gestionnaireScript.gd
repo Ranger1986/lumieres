@@ -12,8 +12,9 @@ var tour : int
 var listeEnemy : Array[Enemy]
 var nbEnemy : int = 4
 @export var enemy: PackedScene
-
 var nextpos : Vector2i
+
+signal S()
 
 func _ready() -> void:
 	listAct = []
@@ -168,6 +169,7 @@ func _input(event: InputEvent) -> void:
 			
 		
 		if acted:
+			emit_signal("S")
 			grid.cleanCells()
 			listAct=[]
 	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_ESCAPE:

@@ -7,10 +7,16 @@ func _ready() -> void:
 
 func _button_pressed():
 	var listeTextureButton : Array
+	var G :Gestionnaire = owner.G
+	G.grid.cleanCells()
+	G.listAct = []
 	
 	listeTextureButton = owner.find_children("", "TextureButton")
 	
 	for i in listeTextureButton.size():
+		listeTextureButton[i].texture_normal = listeTextureButton[i].normalText
+		listeTextureButton[i].using = false
+		listeTextureButton[i].disabled = false
 		var rand : int = randi() % listeTextureButton.size()
 		var tRect : TextureRect = listeTextureButton[i].find_children("", "TextureRect")[0]
 		tRect.texture = listeTextureButton[i].textArray[rand]
