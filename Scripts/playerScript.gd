@@ -5,13 +5,12 @@ extends Entity
 @export var startingPos : Vector2i = Vector2i(0,0)
 static var player : Player
 
-
 func _ready():
 	super._ready()
 	if player == null or !is_instance_valid(player):
 		player = self
 		ToCellPos(startingPos)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	pass
 
@@ -28,3 +27,9 @@ func attackD(opp : Entity, listAct : Array[int])->void:
 
 func defenceD(listAct : Array[int])->void:
 	armure += (defence + listAct.count(DiceFace.DEF))*listAct.count(DiceFace.DEF)
+	
+func death():
+	BoiteDeDialogue.dialogState = "tuto"
+	Gestionnaire.progress = 1
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+	queue_free()
