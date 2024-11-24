@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://b2dbsmeeg3bvf"]
+[gd_scene load_steps=28 format=4 uid="uid://b2dbsmeeg3bvf"]
 
 [ext_resource type="Texture2D" uid="uid://lp8n6q8jimyt" path="res://Ressources/plains.png" id="1_5wq52"]
 [ext_resource type="Script" path="res://Scripts/gestionnaireScript.gd" id="1_7rd8c"]
@@ -301,6 +301,7 @@ script = ExtResource("7_r5cpj")
 _PVmax = 0
 
 [node name="Suzanne" parent="Carte" instance=ExtResource("13_cr5f4")]
+startingPos = Vector2i(6, 6)
 
 [node name="DialogPanel" parent="." node_paths=PackedStringArray("SuzanneStatic") instance=ExtResource("16_vcypg")]
 z_index = 3

@@ -5,11 +5,13 @@ static var suzanne :Suzanne
 static var suzanneMode :bool= false
 static var suzanneturn :bool= true
 var original_color : Color
+@export var startingPos : Vector2i = Vector2i(0,0)
 
 func _ready() -> void:
 	super._ready()
 	if suzanne == null:
 		suzanne = self
+		ToCellPos(startingPos)
 	original_color = modulate
 	
 #func _process(delta: float) -> void:
