@@ -10,6 +10,7 @@ var armure : int = 0
 @export var critrate : float = 0.01
 @export var _PVmax : int = 40
 var PV : int = _PVmax
+var audioDeath
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,8 +18,15 @@ func _ready() -> void:
 		map = owner.find_child("Grid")
 		scale *= map.tile_set.tile_size.x / self.texture.get_size().x
 	self.offset = self.texture.get_size()/2
+	audioDeath = load("res://Ressources/Sounds/Enemy_death.ogg")
 	pass # Replace with function body.
 
+func _process(delta: float) -> void:
+	#if PV == 0:
+		#var audioStreamPlayer2D : Array = self.find_children("", "AudioStreamPlayer2D")
+		#audioStreamPlayer2D[0].stream = audioDeath
+		#audioStreamPlayer2D[0].playing = true
+	pass
 	
 func cellPos()->Vector2i:
 	return position/map.tile_set.tile_size.x
