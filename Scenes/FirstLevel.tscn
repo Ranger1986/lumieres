@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://b2dbsmeeg3bvf"]
+[gd_scene load_steps=24 format=4 uid="uid://b2dbsmeeg3bvf"]
 
 [ext_resource type="Texture2D" uid="uid://lp8n6q8jimyt" path="res://Ressources/plains.png" id="1_5wq52"]
 [ext_resource type="Script" path="res://Scripts/gestionnaireScript.gd" id="1_7rd8c"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://c825p2hnbok5w" path="res://Ressources/cellgreen.png" id="8_4oh33"]
 [ext_resource type="PackedScene" uid="uid://2yfh1ym5qlqm" path="res://Scenes/SuzanneMenu.tscn" id="10_1wojv"]
 [ext_resource type="PackedScene" uid="uid://c3qxqtvwc8vnp" path="res://Scenes/Suzanne.tscn" id="10_32w5n"]
-[ext_resource type="PackedScene" uid="uid://b2tvhjolwt064" path="res://Scenes/DialogPanel.tscn" id="15_7vglk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vakbs"]
 texture = ExtResource("1_5wq52")
@@ -264,13 +263,6 @@ sources/0 = SubResource("TileSetAtlasSource_ltde3")
 sources/1 = SubResource("TileSetAtlasSource_qdglx")
 sources/2 = SubResource("TileSetAtlasSource_lggun")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kih1"]
-bg_color = Color(0, 0, 0, 0.807843)
-expand_margin_left = 60.0
-expand_margin_top = 60.0
-expand_margin_right = 60.0
-expand_margin_bottom = 60.0
-
 [node name="FirstLevel" type="Node2D"]
 script = ExtResource("1_7rd8c")
 enemy = ExtResource("2_cc7b3")
@@ -309,7 +301,3 @@ offset_bottom = 650.0
 z_index = 2
 offset_bottom = 650.0
 G = NodePath("..")
-
-[node name="DialogPanel" parent="." node_paths=PackedStringArray("SuzanneStatic") instance=ExtResource("15_7vglk")]
-theme_override_styles/panel = SubResource("StyleBoxFlat_4kih1")
-SuzanneStatic = NodePath("../SuzanneMenu")

@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2tvhjolwt064"]
+[gd_scene load_steps=5 format=3 uid="uid://b2tvhjolwt064"]
 
+[ext_resource type="StyleBox" uid="uid://dlplbkec5hx3t" path="res://Ressources/Dialog.tres" id="1_60vdq"]
 [ext_resource type="Script" path="res://Scripts/dialog_panel.gd" id="1_gh8j5"]
 [ext_resource type="Texture2D" uid="uid://cmhvlp2qokpa1" path="res://Ressources/suzanne.png" id="2_5u8f0"]
 
@@ -8,6 +9,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0.588235)
 
 [node name="DialogPanel" type="Panel" node_paths=PackedStringArray("Suzanne", "label", "btn")]
 process_mode = 3
+theme_override_styles/panel = ExtResource("1_60vdq")
 script = ExtResource("1_gh8j5")
 Suzanne = NodePath("Sprite2D")
 label = NodePath("Label")
