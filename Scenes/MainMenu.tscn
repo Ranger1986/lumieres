@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6imsaemwrkol"]
+[gd_scene load_steps=10 format=3 uid="uid://c6imsaemwrkol"]
 
 [ext_resource type="Texture2D" uid="uid://dvw8yrvxpm5bt" path="res://Ressources/Titre.png" id="1_bgl55"]
 [ext_resource type="Texture2D" uid="uid://dxkkc23rb1at3" path="res://Ressources/TextJouer.png" id="2_3n1b5"]
@@ -9,8 +9,23 @@
 [ext_resource type="Script" path="res://play_button.gd" id="5_0e23p"]
 [ext_resource type="Script" path="res://quit_button.gd" id="7_mklk0"]
 
+[sub_resource type="GDScript" id="GDScript_srdx4"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [node name="Node2D" type="Node2D"]
 position = Vector2(434, 100)
+script = SubResource("GDScript_srdx4")
 
 [node name="Titre" type="TextureRect" parent="."]
 offset_left = -5.0
