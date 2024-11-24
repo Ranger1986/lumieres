@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6imsaemwrkol"]
+
+[ext_resource type="Texture2D" uid="uid://dvw8yrvxpm5bt" path="res://Ressources/Titre.png" id="1_bgl55"]
+[ext_resource type="Texture2D" uid="uid://dxkkc23rb1at3" path="res://Ressources/TextJouer.png" id="2_3n1b5"]
+[ext_resource type="Texture2D" uid="uid://dw51rf0a3mvad" path="res://Ressources/buttonNormal.png" id="2_rib0b"]
+[ext_resource type="Texture2D" uid="uid://dsq2w1m6sfiuw" path="res://Ressources/buttonPressed.png" id="3_kt6dq"]
+[ext_resource type="Texture2D" uid="uid://dxmmdxjaon5mm" path="res://Ressources/TextQuitter.png" id="3_yl2n4"]
+[ext_resource type="Texture2D" uid="uid://cnl0mpk7j8sca" path="res://Ressources/buttonHover.png" id="4_2ybxe"]
+[ext_resource type="Script" path="res://play_button.gd" id="5_0e23p"]
+[ext_resource type="Script" path="res://quit_button.gd" id="7_mklk0"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(434, 100)
+
+[node name="Titre" type="TextureRect" parent="."]
+offset_left = -5.0
+offset_right = 595.0
+offset_bottom = 100.0
+texture = ExtResource("1_bgl55")
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayButton" type="TextureButton" parent="."]
+offset_left = 104.0
+offset_top = 214.0
+offset_right = 462.0
+offset_bottom = 341.0
+texture_normal = ExtResource("2_rib0b")
+texture_pressed = ExtResource("3_kt6dq")
+texture_hover = ExtResource("4_2ybxe")
+texture_disabled = ExtResource("3_kt6dq")
+texture_focused = ExtResource("4_2ybxe")
+stretch_mode = 0
+script = ExtResource("5_0e23p")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRectPlay" type="TextureRect" parent="PlayButton"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 2.0
+offset_right = 347.0
+offset_bottom = 102.0
+texture = ExtResource("2_3n1b5")
+metadata/_edit_use_anchors_ = true
+
+[node name="QuitButton" type="TextureButton" parent="."]
+offset_left = 104.0
+offset_top = 362.0
+offset_right = 462.0
+offset_bottom = 489.0
+texture_normal = ExtResource("2_rib0b")
+texture_pressed = ExtResource("3_kt6dq")
+texture_hover = ExtResource("4_2ybxe")
+texture_disabled = ExtResource("3_kt6dq")
+texture_focused = ExtResource("4_2ybxe")
+stretch_mode = 0
+script = ExtResource("7_mklk0")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRectQuit" type="TextureRect" parent="QuitButton"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 2.0
+offset_right = 331.0
+offset_bottom = 102.0
+texture = ExtResource("3_yl2n4")
+metadata/_edit_use_anchors_ = true
