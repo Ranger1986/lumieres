@@ -1,0 +1,5 @@
+[gd_resource type="BitMap" format=3 uid="uid://cepd4ot4rcvv"]
+
+[resource]
+resource_local_to_scene = true
+resource_name = "DiceClickMask"

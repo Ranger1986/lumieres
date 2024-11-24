@@ -10,7 +10,6 @@ var longueurPlateau : int = 12
 # Called when the node enters the scene tree for the first time.
 var tour : int
 var listeEnemy : Array[Enemy]
-var tailleListeEnemy : int
 var nbEnemy : int = 4
 @export var enemy: PackedScene
 
@@ -57,11 +56,10 @@ func _ajoutEnemy(nbEnemy : int) -> void:
 		nodeEnemy.offset = nodeEnemy.texture.get_size()/2
 		
 		listeEnemy.append(nodeEnemy)
-		tailleListeEnemy += 1
 	pass
 
 func _actionsEnemy() -> void:
-	for n in tailleListeEnemy:
+	for n in listeEnemy.size():
 		listeEnemy[n]._deplacement()
 	pass
 	
