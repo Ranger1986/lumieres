@@ -4,23 +4,19 @@ var listAct : Array[int]
 var player : Player
 var playerHover : Player
 var grid : GridInteractive
-var offset : Vector2
+static var offset : Vector2
 var largeurPlateau : int = 10
 var longueurPlateau : int = 12
 # Called when the node enters the scene tree for the first time.
 var tour : int
 var listeEnemy : Array[Enemy]
-var nbEnemy : int = 4
+static var nbEnemy : int = 4
 @export var enemy: PackedScene
 var nextpos : Vector2i
-static var viewportSize : Vector2i
-
 
 signal S()
 
 func _ready() -> void:
-	if viewportSize==null:
-		viewportSize=get_viewport().size
 	listAct = []
 	player = find_child("PlayerSprite")
 	playerHover = player.duplicate()
@@ -33,8 +29,8 @@ func _ready() -> void:
 	
 	_ajoutEnemy(nbEnemy)
 	for enemy in listeEnemy:
-		print("add")
 		enemy.connect("loot", Callable(find_child("DiceMenu"), "_addDice"))
+		enemy.connect("capturable",Callable(self, "_showCapturable"))
 	find_child("Carte").position.x = find_child("SuzanneMenu").size.x
 	var tileMap : TileMapLayer = find_child("Map")
 	offset=Vector2(find_child("SuzanneMenu").size.x,0)
@@ -67,6 +63,7 @@ func _ajoutEnemy(nbEnemy : int) -> void:
 	pass
 
 func _actionsEnemy() -> void:
+	grid.cleanCaptureCells()
 	for n in listeEnemy.size():
 		listeEnemy[n]._deplacement()
 	pass
@@ -78,6 +75,8 @@ func getEnemy(pos :Vector2i)->int:
 	return listeEnemy.find(enemies[0])
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Suzanne.suzanneMode:
+		return
 	var pos :Vector2i = floor((get_viewport().get_mouse_position()-offset)/64)
 	if(grid.get_cell_source_id(pos)==0):
 		playerHover.ToCellPos(pos)
@@ -95,9 +94,8 @@ func _process(delta: float) -> void:
 		playerHover.hide()
 	
 	if listeEnemy.size()==0:
-		#get_tree().paused()
-		get_tree().root.add_child(self.duplicate())
-		self.queue_free() 
+		nbEnemy+=4
+		get_tree().change_scene_to_file("res://Scenes/FirstLevel.tscn")
 
 func giveAct(diceFace: int ):
 	listAct.append(diceFace)
@@ -155,6 +153,8 @@ func interpretAction():
 		
 	
 func _input(event: InputEvent) -> void:
+	if Suzanne.suzanneMode:
+		return
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		var pos : Vector2i = floor((event.position-offset)/64)
 		# Quand il n'y a pas de déplacement
@@ -183,3 +183,6 @@ func _input(event: InputEvent) -> void:
 			emit_signal("S")
 			grid.cleanCells()
 			listAct=[]
+			grid.ensureCaptureCells()
+func _showCapturable(pos :Vector2i):
+	grid.markCaptureCells([pos],3)

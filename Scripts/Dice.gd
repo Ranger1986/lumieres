@@ -63,7 +63,7 @@ func clean():
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_released() :
-		if event.as_text_key_label()==str(num):
+		if event.as_text_key_label()==str(num) and !disabled:
 			_button_pressed()
 		#var e : InputEventKey = event
 		#print(e.as_text_key_label())

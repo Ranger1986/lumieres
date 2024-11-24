@@ -4,9 +4,11 @@ extends Entity
 @export var G : Gestionnaire
 
 var finTour : bool
+var seuilPV:int =10
 signal loot()
+signal capturable(pos:Vector2i)
 func _ready() -> void:
-	PV=1
+	PV=20
 func deplacementRandom() -> Vector2:
 	
 	var random : int
@@ -35,6 +37,15 @@ func _deplacement() -> void:
 		ejected(Vector2i(1,0)*sign(direction.x))
 	else:
 		ejected(Vector2i(0,1)*sign(direction.y))
+	if seuilPV >PV:
+		emit_signal("capturable", cellPos())
+		
+func damaged(dmg:int):
+	super.damaged(dmg)
+	if seuilPV > PV:
+		print("bloup") 
+		emit_signal("capturable", cellPos())
+		
 		
 	
 	#var postmp : Vector2

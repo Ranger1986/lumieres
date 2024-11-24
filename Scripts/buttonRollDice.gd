@@ -19,6 +19,7 @@ func _button_pressed():
 		var tRect : TextureRect = listeTextureButton[i].find_children("", "TextureRect")[0]
 		tRect.texture = listeTextureButton[i].textArray[rand]
 	owner.G._actionsEnemy()
+	Suzanne.suzanneturn=true
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://b2dbsmeeg3bvf"]
+[gd_scene load_steps=26 format=4 uid="uid://b2dbsmeeg3bvf"]
 
 [ext_resource type="Texture2D" uid="uid://lp8n6q8jimyt" path="res://Ressources/plains.png" id="1_5wq52"]
 [ext_resource type="Script" path="res://Scripts/gestionnaireScript.gd" id="1_7rd8c"]
@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://cp5kd7t5mw71e" path="res://icon.svg" id="6_8s5dr"]
 [ext_resource type="Script" path="res://Scripts/enemyScript.gd" id="7_r5cpj"]
 [ext_resource type="Texture2D" uid="uid://c825p2hnbok5w" path="res://Ressources/cellgreen.png" id="8_4oh33"]
+[ext_resource type="Texture2D" uid="uid://dtw2hg5iwpsu0" path="res://Ressources/cellgreenC.png" id="9_5ks2g"]
 [ext_resource type="PackedScene" uid="uid://2yfh1ym5qlqm" path="res://Scenes/SuzanneMenu.tscn" id="10_1wojv"]
+[ext_resource type="PackedScene" uid="uid://c3qxqtvwc8vnp" path="res://Scenes/Suzanne.tscn" id="12_2m5f6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vakbs"]
 texture = ExtResource("1_5wq52")
@@ -256,11 +258,17 @@ texture = ExtResource("8_4oh33")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8fry6"]
+texture = ExtResource("9_5ks2g")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_gaon3"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_ltde3")
 sources/1 = SubResource("TileSetAtlasSource_qdglx")
 sources/2 = SubResource("TileSetAtlasSource_lggun")
+sources/3 = SubResource("TileSetAtlasSource_8fry6")
 
 [node name="FirstLevel" type="Node2D"]
 script = ExtResource("1_7rd8c")
@@ -282,6 +290,8 @@ tile_set = SubResource("TileSet_gaon3")
 script = ExtResource("5_utiuj")
 
 [node name="PlayerSprite" parent="Carte" instance=ExtResource("2_geuij")]
+
+[node name="Suzanne" parent="Carte" instance=ExtResource("12_2m5f6")]
 
 [node name="EnemySprite" parent="Carte" instance=ExtResource("2_geuij")]
 position = Vector2(-125, 0)
