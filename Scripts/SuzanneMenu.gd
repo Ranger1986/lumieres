@@ -22,3 +22,10 @@ func show_suzanne() -> void:
 
 func get_suzanne_position() -> Vector2:
 	return SuzanneImage.position
+	
+func _getCapture(text: Texture):
+	var pet :Sprite2D = Sprite2D.new()
+	pet.texture = text
+	pet.offset = Vector2(32,32)
+	pet.position = Vector2(0,1) * 64 * find_child("captureContainer").get_child_count()
+	find_child("captureContainer").add_child(pet)

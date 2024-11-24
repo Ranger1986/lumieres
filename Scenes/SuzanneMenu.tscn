@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://2yfh1ym5qlqm"]
+[gd_scene load_steps=3 format=3 uid="uid://2yfh1ym5qlqm"]
 
 [ext_resource type="Script" path="res://Scripts/SuzanneMenu.gd" id="1_yxtsh"]
 [ext_resource type="Texture2D" uid="uid://cmhvlp2qokpa1" path="res://Ressources/suzanne.png" id="2_b6tca"]
-[ext_resource type="Texture2D" uid="uid://cnkj650fe7jsl" path="res://Ressources/d6.png" id="3_son3u"]
-[ext_resource type="Texture2D" uid="uid://17fbqjj8vejl" path="res://Ressources/d20.png" id="4_sic0u"]
 
 [node name="SuzanneMenu" type="ColorRect" node_paths=PackedStringArray("SuzanneImage")]
 custom_minimum_size = Vector2(100, 650)
@@ -23,23 +21,9 @@ position = Vector2(52, 116)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_b6tca")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="captureContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(100, 650)
 layout_mode = 0
 offset_top = 250.0
 offset_right = 100.0
 offset_bottom = 900.0
-
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("3_son3u")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TextureButton2" type="TextureButton" parent="VBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("4_sic0u")
-ignore_texture_size = true
-stretch_mode = 0

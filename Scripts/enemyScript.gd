@@ -8,6 +8,7 @@ var seuilPV:int =10
 var listeTexture : Array
 
 signal loot()
+signal capturesignal(text:Texture)
 #signal capturable(pos:Vector2i)
 func _ready() -> void:
 	PV=20
@@ -80,5 +81,6 @@ func death():
 	super.death()
 	
 func capture():
+	emit_signal("capturesignal", self.texture)
 	G.listeEnemy.pop_at(G.listeEnemy.find(self))
 	super.death()
