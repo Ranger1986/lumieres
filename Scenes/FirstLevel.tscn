@@ -1,9 +1,9 @@
-[gd_scene load_steps=23 format=4 uid="uid://b2dbsmeeg3bvf"]
+[gd_scene load_steps=25 format=4 uid="uid://b2dbsmeeg3bvf"]
 
 [ext_resource type="Texture2D" uid="uid://lp8n6q8jimyt" path="res://Ressources/plains.png" id="1_5wq52"]
 [ext_resource type="Script" path="res://Scripts/gestionnaireScript.gd" id="1_7rd8c"]
 [ext_resource type="Texture2D" uid="uid://cbi8oe2v0nmco" path="res://Ressources/cell.png" id="2_bug63"]
-[ext_resource type="PackedScene" uid="uid://r2soosiupb3e" path="res://Scenes/Enemy.tscn" id="2_cc7b3"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemy.tscn" id="2_cc7b3"]
 [ext_resource type="PackedScene" uid="uid://dxj3rjhyo3pcj" path="res://Scenes/Player.tscn" id="2_geuij"]
 [ext_resource type="PackedScene" uid="uid://q6tdu07tfo2c" path="res://Scenes/DiceMenu.tscn" id="3_n5ntv"]
 [ext_resource type="Texture2D" uid="uid://cb80e3vpii8yx" path="res://Ressources/cellmov.png" id="5_1oi3t"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/enemyScript.gd" id="7_r5cpj"]
 [ext_resource type="Texture2D" uid="uid://c825p2hnbok5w" path="res://Ressources/cellgreen.png" id="8_4oh33"]
 [ext_resource type="PackedScene" uid="uid://2yfh1ym5qlqm" path="res://Scenes/SuzanneMenu.tscn" id="10_1wojv"]
+[ext_resource type="PackedScene" uid="uid://b2tvhjolwt064" path="res://Scenes/DialogPanel.tscn" id="14_uhatu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vakbs"]
 texture = ExtResource("1_5wq52")
@@ -262,6 +263,13 @@ sources/0 = SubResource("TileSetAtlasSource_ltde3")
 sources/1 = SubResource("TileSetAtlasSource_qdglx")
 sources/2 = SubResource("TileSetAtlasSource_lggun")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aclcf"]
+bg_color = Color(0, 0, 0, 0.701961)
+expand_margin_left = 60.0
+expand_margin_top = 60.0
+expand_margin_right = 60.0
+expand_margin_bottom = 60.0
+
 [node name="FirstLevel" type="Node2D"]
 script = ExtResource("1_7rd8c")
 enemy = ExtResource("2_cc7b3")
@@ -299,3 +307,6 @@ z_index = 2
 offset_right = 100.0
 offset_bottom = 650.0
 G = NodePath("..")
+
+[node name="DialogPanel" parent="." instance=ExtResource("14_uhatu")]
+theme_override_styles/panel = SubResource("StyleBoxFlat_aclcf")
