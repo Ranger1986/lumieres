@@ -69,3 +69,7 @@ func death():
 	emit_signal("loot")
 	G.listeEnemy.pop_at(G.listeEnemy.find(self))
 	super.death()
+	
+func capture():
+	G.listeEnemy.pop_at(G.listeEnemy.find(self))
+	super.death()

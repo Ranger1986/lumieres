@@ -46,7 +46,7 @@ func _input(event: InputEvent) -> void:
 		elif suzanneMode and grid.get_cell_source_id(pos)==3 and (cellPos()-pos).length()<=3:
 			print("NOMNOM")
 			var G : Gestionnaire = owner
-			G.listeEnemy[G.getEnemy(pos)].death()
+			G.listeEnemy[G.getEnemy(pos)].capture()
 			grid.markCells([pos],-1)
 			grid.cleanCells()
 			suzanneMode = false

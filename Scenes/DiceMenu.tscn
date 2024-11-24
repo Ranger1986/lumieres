@@ -29,14 +29,14 @@ layout_mode = 2
 text = "Armure:"
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(100, 600)
+custom_minimum_size = Vector2(100, 700)
 layout_mode = 2
 color = Color(0.525101, 0.525101, 0.525101, 1)
 
 [node name="DiceContainer" type="VBoxContainer" parent="VBoxContainer/ColorRect"]
 layout_mode = 0
 offset_right = 100.0
-offset_bottom = 600.0
+offset_bottom = 700.0
 
 [node name="TextureButton" parent="VBoxContainer/ColorRect/DiceContainer" instance=ExtResource("2_5li3d")]
 layout_mode = 2

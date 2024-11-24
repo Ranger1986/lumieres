@@ -16,9 +16,10 @@ func _process(delta: float) -> void:
 		find_child("ArmureLabel").text = "Armure: " + str(Player.player.armure)
 	pass
 func _addDice():
-	var instance : Dice = find_child("DiceContainer").get_child(0).duplicate()
-	find_child("DiceContainer").add_child(instance)
-	instance.owner = self
-	instance.disabled = true
-	instance._connect()
+	if find_child("DiceContainer").get_child_count()<9:
+		var instance : Dice = find_child("DiceContainer").get_child(0).duplicate()
+		find_child("DiceContainer").add_child(instance)
+		instance.owner = self
+		instance.disabled = true
+		instance._connect()
 	
