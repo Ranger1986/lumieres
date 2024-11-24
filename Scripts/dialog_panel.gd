@@ -63,15 +63,24 @@ func dialog(id: String) -> String:
 	var s: String
 	match id:
 		"tuto":
-			s = "res://Ressources/tutorialDialog.txt"
-			dialogue = get_text(s)
+			#s = "res://Ressources/tutorialDialog.txt"
+			#var file = FileAccess.open("res://Ressources/tutorialDialog.txt", FileAccess.READ)
+			#var content = file.get_as_text()
+			##print(content)
+			dialogue = "Salut tête de crâne !
+J’ignore d’où tu viens, mais joins-toi à moi. Je suis Suzanne. Laisse-moi t'expliquer comment cet endroit fonctionne. Tout se base sur les dés que tu possèdes. Ils sont affichés à droite.
+En lançant les dés, tu as accès à des actions, pour te déplacer dans le donjon, attaquer les monstres, ou te défendre. En sélectionnant plusieurs dés, tu peux effectuer des combinaisons. Utilise-les avec intelligence !
+En éliminant un monstre, on obtient le dé qu'il contient... Mais évitons de les tuer. S'ils s'approchent assez de moi, je peux les capturer, sans les tuer. 
+Priorise la capture, d'accord ?
+
+Avançons... La sortie ne doit pas être loin..." #get_text(s)
 		"Level_2":
-			s = "res://Ressources/goodDialog.txt"
-			dialogue = get_random_line(s)
+			#s = "res://Ressources/goodDialog.txt"
+			dialogue = "Suzanne est fière de toi !"
 		"Level_3":
 			# BOSS
-			s = "res://Ressources/badDialog.txt"
-			dialogue = get_random_line(s)
+			#s = "res://Ressources/badDialog.txt"
+			dialogue = "Va en enfer sale chien !"
 		_:
 			s = ""
 	

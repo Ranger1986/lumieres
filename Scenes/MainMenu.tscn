@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dsq2w1m6sfiuw" path="res://Ressources/buttonPressed.png" id="3_kt6dq"]
 [ext_resource type="Texture2D" uid="uid://dxmmdxjaon5mm" path="res://Ressources/TextQuitter.png" id="3_yl2n4"]
 [ext_resource type="Texture2D" uid="uid://cnl0mpk7j8sca" path="res://Ressources/buttonHover.png" id="4_2ybxe"]
-[ext_resource type="Script" path="res://play_button.gd" id="5_0e23p"]
-[ext_resource type="Script" path="res://quit_button.gd" id="7_mklk0"]
+[ext_resource type="Script" path="res://Scripts/play_button.gd" id="5_0e23p"]
+[ext_resource type="Script" path="res://Scripts/quit_button.gd" id="7_mklk0"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(434, 100)
