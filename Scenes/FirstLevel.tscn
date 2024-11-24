@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://lp8n6q8jimyt" path="res://Ressources/plains.png" id="1_5wq52"]
 [ext_resource type="Script" path="res://Scripts/gestionnaireScript.gd" id="1_7rd8c"]
 [ext_resource type="Texture2D" uid="uid://cbi8oe2v0nmco" path="res://Ressources/cell.png" id="2_bug63"]
-[ext_resource type="PackedScene" path="res://Scenes/Enemy.tscn" id="2_cc7b3"]
+[ext_resource type="PackedScene" uid="uid://r2soosiupb3e" path="res://Scenes/Enemy.tscn" id="2_cc7b3"]
 [ext_resource type="PackedScene" uid="uid://dxj3rjhyo3pcj" path="res://Scenes/Player.tscn" id="2_geuij"]
 [ext_resource type="PackedScene" uid="uid://q6tdu07tfo2c" path="res://Scenes/DiceMenu.tscn" id="3_n5ntv"]
 [ext_resource type="Texture2D" uid="uid://cb80e3vpii8yx" path="res://Ressources/cellmov.png" id="5_1oi3t"]
@@ -12,8 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://cp5kd7t5mw71e" path="res://icon.svg" id="6_8s5dr"]
 [ext_resource type="Script" path="res://Scripts/enemyScript.gd" id="7_r5cpj"]
 [ext_resource type="Texture2D" uid="uid://c825p2hnbok5w" path="res://Ressources/cellgreen.png" id="8_4oh33"]
-[ext_resource type="Texture2D" uid="uid://dtw2hg5iwpsu0" path="res://Ressources/cellgreenC.png" id="9_5ks2g"]
 [ext_resource type="PackedScene" uid="uid://2yfh1ym5qlqm" path="res://Scenes/SuzanneMenu.tscn" id="10_1wojv"]
+[ext_resource type="PackedScene" uid="uid://c3qxqtvwc8vnp" path="res://Scenes/Suzanne.tscn" id="10_32w5n"]
+[ext_resource type="PackedScene" uid="uid://b2tvhjolwt064" path="res://Scenes/DialogPanel.tscn" id="15_7vglk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vakbs"]
 texture = ExtResource("1_5wq52")
@@ -257,16 +258,18 @@ texture = ExtResource("8_4oh33")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8fry6"]
-texture = ExtResource("9_5ks2g")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_gaon3"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_ltde3")
 sources/1 = SubResource("TileSetAtlasSource_qdglx")
 sources/2 = SubResource("TileSetAtlasSource_lggun")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kih1"]
+bg_color = Color(0, 0, 0, 0.807843)
+expand_margin_left = 60.0
+expand_margin_top = 60.0
+expand_margin_right = 60.0
+expand_margin_bottom = 60.0
 
 [node name="FirstLevel" type="Node2D"]
 script = ExtResource("1_7rd8c")
@@ -287,9 +290,9 @@ z_index = 1
 tile_set = SubResource("TileSet_gaon3")
 script = ExtResource("5_utiuj")
 
-[node name="PlayerSprite" parent="Carte" instance=ExtResource("2_geuij")]
+[node name="Suzanne" parent="Carte" instance=ExtResource("10_32w5n")]
 
-[node name="Suzanne" parent="Carte" instance=ExtResource("12_2m5f6")]
+[node name="PlayerSprite" parent="Carte" instance=ExtResource("2_geuij")]
 
 [node name="EnemySprite" parent="Carte" instance=ExtResource("2_geuij")]
 position = Vector2(-125, 0)
@@ -307,6 +310,6 @@ z_index = 2
 offset_bottom = 650.0
 G = NodePath("..")
 
-[node name="DialogPanel" parent="." node_paths=PackedStringArray("SuzanneStatic") instance=ExtResource("14_uhatu")]
-theme_override_styles/panel = SubResource("StyleBoxFlat_aclcf")
+[node name="DialogPanel" parent="." node_paths=PackedStringArray("SuzanneStatic") instance=ExtResource("15_7vglk")]
+theme_override_styles/panel = SubResource("StyleBoxFlat_4kih1")
 SuzanneStatic = NodePath("../SuzanneMenu")
