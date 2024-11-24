@@ -80,7 +80,8 @@ Avançons... La sortie ne doit pas être loin..." #get_text(s)
 		"Level_3":
 			# BOSS
 			#s = "res://Ressources/badDialog.txt"
-			dialogue = "Va en enfer sale chien !"
+			dialogue = "Merci beaucoup pour ton aide, tête de crâne !
+Je me souviendrais de toi, ne t'en fais pas. Tu m'aura été très utile, mais je n'ai plus besoin de toi. Prépare-toi à périr !"
 		_:
 			s = ""
 	
