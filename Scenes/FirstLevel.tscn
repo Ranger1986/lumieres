@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://2yfh1ym5qlqm" path="res://Scenes/SuzanneMenu.tscn" id="10_1wojv"]
 [ext_resource type="Texture2D" uid="uid://7jus0ir84agj" path="res://Ressources/Player.png" id="12_gt8hd"]
 [ext_resource type="PackedScene" uid="uid://c3qxqtvwc8vnp" path="res://Scenes/Suzanne.tscn" id="13_cr5f4"]
+[ext_resource type="PackedScene" uid="uid://b2tvhjolwt064" path="res://Scenes/DialogPanel.tscn" id="16_vcypg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vakbs"]
 texture = ExtResource("1_5wq52")
@@ -300,6 +301,10 @@ script = ExtResource("7_r5cpj")
 _PVmax = 0
 
 [node name="Suzanne" parent="Carte" instance=ExtResource("13_cr5f4")]
+
+[node name="DialogPanel" parent="." node_paths=PackedStringArray("SuzanneStatic") instance=ExtResource("16_vcypg")]
+z_index = 3
+SuzanneStatic = NodePath("../SuzanneMenu")
 
 [node name="SuzanneMenu" parent="." instance=ExtResource("10_1wojv")]
 z_index = 2

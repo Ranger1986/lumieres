@@ -19,7 +19,7 @@ btn = NodePath("Button")
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
-autowrap_mode = 1
+autowrap_mode = 3
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0

@@ -1,5 +1,6 @@
 class_name Gestionnaire
 extends Node
+
 var listAct : Array[int]
 var player : Player
 var playerHover : Player
@@ -7,12 +8,12 @@ var grid : GridInteractive
 static var offset : Vector2
 var largeurPlateau : int = 10
 var longueurPlateau : int = 12
-# Called when the node enters the scene tree for the first time.
 var tour : int
 var listeEnemy : Array[Enemy]
 static var nbEnemy : int = 4
 @export var enemy: PackedScene
 var nextpos : Vector2i
+static var progress: int = 1
 
 signal S()
 
@@ -95,8 +96,14 @@ func _process(delta: float) -> void:
 		nextpos= Vector2i(-1,-1)
 		playerHover.hide()
 	
+	# Niveau suivant
 	if listeEnemy.size()==0:
 		nbEnemy+=4
+
+		self.progress += 1
+		$DialogPanel.dialogState = str("Level_", self.progress)
+		print("Progress ", self.progress, " ", "State ", $DialogPanel.dialogState)
+
 		get_tree().change_scene_to_file("res://Scenes/FirstLevel.tscn")
 
 func giveAct(diceFace: int ):
