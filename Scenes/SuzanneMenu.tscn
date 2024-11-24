@@ -1,13 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://2yfh1ym5qlqm"]
 
-[ext_resource type="Script" path="res://SuzanneMenu.gd" id="1_1woc4"]
+[ext_resource type="Script" path="res://Scripts/SuzanneMenu.gd" id="1_yxtsh"]
 [ext_resource type="Texture2D" uid="uid://cmhvlp2qokpa1" path="res://Ressources/suzanne.png" id="2_b6tca"]
 [ext_resource type="Texture2D" uid="uid://cnkj650fe7jsl" path="res://Ressources/d6.png" id="3_son3u"]
 [ext_resource type="Texture2D" uid="uid://17fbqjj8vejl" path="res://Ressources/d20.png" id="4_sic0u"]
 
-[node name="SuzanneMenu" type="ColorRect"]
+[node name="SuzanneMenu" type="ColorRect" node_paths=PackedStringArray("SuzanneImage")]
 custom_minimum_size = Vector2(100, 650)
 color = Color(0.351563, 0.351563, 0.351563, 1)
+script = ExtResource("1_yxtsh")
+SuzanneImage = NodePath("ColorRect/Sprite2D")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(100, 250)
@@ -15,7 +17,6 @@ layout_mode = 2
 offset_right = 100.0
 offset_bottom = 250.0
 color = Color(0.311757, 0.614077, 0.346597, 1)
-script = ExtResource("1_1woc4")
 
 [node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
 position = Vector2(52, 116)

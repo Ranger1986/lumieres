@@ -264,7 +264,7 @@ sources/1 = SubResource("TileSetAtlasSource_qdglx")
 sources/2 = SubResource("TileSetAtlasSource_lggun")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aclcf"]
-bg_color = Color(0, 0, 0, 0.701961)
+bg_color = Color(0, 0, 0, 0.858824)
 expand_margin_left = 60.0
 expand_margin_top = 60.0
 expand_margin_right = 60.0
@@ -308,5 +308,6 @@ offset_right = 100.0
 offset_bottom = 650.0
 G = NodePath("..")
 
-[node name="DialogPanel" parent="." instance=ExtResource("14_uhatu")]
+[node name="DialogPanel" parent="." node_paths=PackedStringArray("SuzanneStatic") instance=ExtResource("14_uhatu")]
 theme_override_styles/panel = SubResource("StyleBoxFlat_aclcf")
+SuzanneStatic = NodePath("../SuzanneMenu")
