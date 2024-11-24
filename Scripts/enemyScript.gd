@@ -5,10 +5,20 @@ extends Entity
 
 var finTour : bool
 var seuilPV:int =10
+var listeTexture : Array
+
 signal loot()
 signal capturable(pos:Vector2i)
+
 func _ready() -> void:
 	PV=20
+	listeTexture.append(load("res://Ressources/AnimalDice_Bear.png"))
+	listeTexture.append(load("res://Ressources/AnimalDice_Fox.png"))
+	listeTexture.append(load("res://Ressources/AnimalDice_Rabbit.png"))
+	listeTexture.append(load("res://Ressources/AnimalDice_Owl.png"))
+	var rand : int = randi() % listeTexture.size()
+	self.texture = listeTexture[rand]
+		
 func deplacementRandom() -> Vector2:
 	
 	var random : int

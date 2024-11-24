@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://b2dbsmeeg3bvf"]
+[gd_scene load_steps=27 format=4 uid="uid://b2dbsmeeg3bvf"]
 
 [ext_resource type="Texture2D" uid="uid://lp8n6q8jimyt" path="res://Ressources/plains.png" id="1_5wq52"]
 [ext_resource type="Script" path="res://Scripts/gestionnaireScript.gd" id="1_7rd8c"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c825p2hnbok5w" path="res://Ressources/cellgreen.png" id="8_4oh33"]
 [ext_resource type="PackedScene" uid="uid://2yfh1ym5qlqm" path="res://Scenes/SuzanneMenu.tscn" id="10_1wojv"]
 [ext_resource type="PackedScene" uid="uid://c3qxqtvwc8vnp" path="res://Scenes/Suzanne.tscn" id="10_32w5n"]
+[ext_resource type="Texture2D" uid="uid://7jus0ir84agj" path="res://Ressources/Player.png" id="12_gt8hd"]
 [ext_resource type="PackedScene" uid="uid://b2tvhjolwt064" path="res://Scenes/DialogPanel.tscn" id="15_7vglk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vakbs"]
@@ -293,6 +294,7 @@ script = ExtResource("5_utiuj")
 [node name="Suzanne" parent="Carte" instance=ExtResource("10_32w5n")]
 
 [node name="PlayerSprite" parent="Carte" instance=ExtResource("2_geuij")]
+texture = ExtResource("12_gt8hd")
 
 [node name="EnemySprite" parent="Carte" instance=ExtResource("2_geuij")]
 position = Vector2(-125, 0)
