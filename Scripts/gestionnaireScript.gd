@@ -6,8 +6,8 @@ var player : Player
 var playerHover : Player
 var grid : GridInteractive
 static var offset : Vector2
-var largeurPlateau : int = 10
-var longueurPlateau : int = 12
+var largeurPlateau : int = 14
+var longueurPlateau : int = 21
 var tour : int
 var listeEnemy : Array[Enemy]
 static var nbEnemy : int = 4
@@ -25,11 +25,26 @@ func _ready() -> void:
 	find_child("Carte").add_child(playerHover)
 	playerHover.modulate.a=0.5
 	grid = find_child("GridInteractive")
-	largeurPlateau = 10
-	longueurPlateau = 12
+	# largeurPlateau = 10
+	# longueurPlateau = 12
 	tour = 0
 	
-	_ajoutEnemy(nbEnemy)
+	if progress == 3:
+		# Disposition de la salle du BOSS
+		for i in range(longueurPlateau):
+			print(longueurPlateau)
+			_ajoutSingleEnemy(Vector2(i, 3))
+			
+		_ajoutSingleEnemy(Vector2(longueurPlateau/2, 4))
+		listeEnemy[listeEnemy.size()-1].texture = Suzanne.suzanne.texture
+		listeEnemy[listeEnemy.size()-1].scale *= grid.tile_set.tile_size.x / listeEnemy[listeEnemy.size()-1].texture.get_size().x
+		listeEnemy[listeEnemy.size()-1].offset = listeEnemy[listeEnemy.size()-1].texture.get_size()/2
+		find_child("Suzanne").queue_free()
+		
+		Player.player.ToCellPos(Vector2i(longueurPlateau/2, largeurPlateau - 2))
+	else:
+		_ajoutEnemy(nbEnemy)
+
 	for enemy in listeEnemy:
 		enemy.connect("loot", Callable(find_child("DiceMenu"), "_addDice"))
 		enemy.connect("loot", Callable(self, "_deathSound"))
@@ -63,7 +78,17 @@ func _ajoutEnemy(nbEnemy : int) -> void:
 		nodeEnemy.offset = nodeEnemy.texture.get_size()/2
 		
 		listeEnemy.append(nodeEnemy)
-	pass
+
+func _ajoutSingleEnemy(position: Vector2) -> void:
+	var nodeEnemy = enemy.instantiate()
+	find_child("Carte").add_child(nodeEnemy)
+	nodeEnemy.G = self
+	nodeEnemy.map = grid
+	nodeEnemy.position = position * 64 + offset
+	nodeEnemy.scale *= nodeEnemy.map.tile_set.tile_size.x / nodeEnemy.texture.get_size().x
+	nodeEnemy.offset = nodeEnemy.texture.get_size()/2
+
+	listeEnemy.append(nodeEnemy)
 
 func _actionsEnemy() -> void:
 	grid.cleanCaptureCells()
