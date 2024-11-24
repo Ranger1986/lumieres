@@ -32,4 +32,3 @@ func death():
 	BoiteDeDialogue.dialogState = "tuto"
 	Gestionnaire.progress = 1
 	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
-	queue_free()
