@@ -7,11 +7,11 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xlu5"]
 bg_color = Color(0.6, 0.6, 0.6, 0.588235)
 
-[node name="DialogPanel" type="Panel" node_paths=PackedStringArray("Suzanne", "label", "btn")]
+[node name="DialogPanel" type="Panel" node_paths=PackedStringArray("suzanne", "label", "btn")]
 process_mode = 3
 theme_override_styles/panel = ExtResource("1_60vdq")
 script = ExtResource("1_gh8j5")
-Suzanne = NodePath("Sprite2D")
+suzanne = NodePath("Sprite2D")
 label = NodePath("Label")
 btn = NodePath("Button")
 

@@ -6,3 +6,5 @@
 [node name="Suzanne" type="Sprite2D"]
 texture = ExtResource("1_6nhw5")
 script = ExtResource("2_rxswr")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

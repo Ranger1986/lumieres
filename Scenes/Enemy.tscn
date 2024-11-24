@@ -6,3 +6,5 @@
 [node name="EnemySprite" type="Sprite2D"]
 texture = ExtResource("1_8523c")
 script = ExtResource("2_irl35")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

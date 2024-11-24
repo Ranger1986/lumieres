@@ -1,8 +1,8 @@
 class_name BoiteDeDialogue
 extends Panel
 
-@export var SuzanneStatic: ColorRect
-@export var Suzanne: Sprite2D
+@export var suzanneStatic: ColorRect
+@export var suzanne: Sprite2D
 
 # Devra peut-être être mis à "off" au départ si le panneau apparâit trop tôt.
 # Il faudra alors l'activer au changement de scène (Menu -> Jeu).
@@ -15,7 +15,7 @@ func _ready() -> void:
 	self.get_parent().get_tree().paused = true
 
 	# Cacher l'image de Suzanne présente dans le menu à gauche
-	SuzanneStatic.hide_suzanne()
+	suzanneStatic.hide_suzanne()
 
 	# Propriétés variables du Panel
 	var parent_size: Vector2 = self.get_viewport_rect().size
@@ -40,8 +40,8 @@ func _ready() -> void:
 	label.set_text(s)
 
 	# Image
-	Suzanne.scale = Vector2(0.8, 0.8)
-	Suzanne.position = Vector2(panel_center.x, 100)
+	suzanne.scale = Vector2(0.8, 0.8)
+	suzanne.position = Vector2(panel_center.x, 100)
 
 func _process(delta: float) -> void:
 	pass
@@ -51,7 +51,7 @@ func dialogNext() -> void:
 	dialogState = "off"
 	self.get_parent().get_tree().paused = false
 	self.hide()
-	SuzanneStatic.show_suzanne()
+	suzanneStatic.show_suzanne()
 	
 	var s: String = dialog(dialogState)
 	label.set_text(s)
