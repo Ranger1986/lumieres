@@ -52,6 +52,8 @@ func _ready() -> void:
 	for enemy in listeEnemy:
 		enemy.connect("loot", Callable(find_child("DiceMenu"), "_addDice"))
 		enemy.connect("loot", Callable(self, "_deathSound"))
+		enemy.connect("capturesignal", Callable(find_child("SuzanneMenu"), "_getCapture"))
+		
 	find_child("Carte").position.x = find_child("SuzanneMenu").size.x
 	var tileMap : TileMapLayer = find_child("Map")
 	offset=Vector2(find_child("SuzanneMenu").size.x,0)
