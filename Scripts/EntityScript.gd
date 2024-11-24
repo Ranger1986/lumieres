@@ -24,10 +24,17 @@ func cellPos()->Vector2i:
 	return position/map.tile_set.tile_size.x
 func ToCellPos(pos : Vector2i)-> void:
 	position = pos * 64
+	
 func damaged(dmg:int):
+	if dmg < armure:
+		armure -= dmg
+		return
+	dmg-=armure
+	armure=0
 	PV-=dmg
 	if PV <=0:
 		queue_free()
+
 func attack(opp : Entity)->void:
 	var dmg : int = force + randi() % 5
 	if randi() % 100 < 1:

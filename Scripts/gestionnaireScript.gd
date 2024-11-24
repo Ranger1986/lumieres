@@ -163,7 +163,7 @@ func _input(event: InputEvent) -> void:
 				en.ejected(Vector2i(pos - player.cellPos())/(pos - player.cellPos()).length(),listAct.count(1))
 			acted = true
 		if (pos == player.cellPos() and grid.get_cell_source_id(pos)==2):
-			print("DEF!")
+			player.defenceD(listAct)
 			acted = true
 			
 		

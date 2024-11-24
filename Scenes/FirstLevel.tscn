@@ -290,10 +290,12 @@ script = ExtResource("7_r5cpj")
 _PVmax = 0
 
 [node name="SuzanneMenu" parent="." instance=ExtResource("10_1wojv")]
+z_index = 2
 offset_right = 100.0
 offset_bottom = 650.0
 
 [node name="DiceMenu" parent="." node_paths=PackedStringArray("G") instance=ExtResource("3_n5ntv")]
+z_index = 2
 offset_right = 100.0
 offset_bottom = 650.0
 G = NodePath("..")

@@ -6,3 +6,4 @@
 [node name="PlayerSprite" type="Sprite2D"]
 texture = ExtResource("1_b52ek")
 script = ExtResource("2_bxrvs")
+startingPos = Vector2i(5, 5)

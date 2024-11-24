@@ -2,14 +2,17 @@ class_name Player
 extends Entity
 
 @export var G : Gestionnaire
-static var PlayerCell : Vector2i
+@export var startingPos : Vector2i = Vector2i(0,0)
+static var player : Player
 
 
-
+func _ready():
+	super._ready()
+	if player == null:
+		player = self
+		ToCellPos(startingPos)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if position != null and map != null:
-		PlayerCell = cellPos()
 	pass
 
 func attackD(opp : Entity, listAct : Array[int])->void:
@@ -23,5 +26,5 @@ func attackD(opp : Entity, listAct : Array[int])->void:
 		dmgTot+=dmg
 	opp.damaged(dmgTot)
 
-func defenceD(opp : Entity, listAct : Array[int])->void:
+func defenceD(listAct : Array[int])->void:
 	armure += (defence + listAct.count(DiceFace.DEF))*listAct.count(DiceFace.DEF)

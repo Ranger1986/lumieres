@@ -27,9 +27,9 @@ func deplacementRandom() -> Vector2:
 
 #Déplace l'ennemi d'une case
 func _deplacement() -> void:
-	if getNeighbourCells().any(func(a:Vector2i):return a == Player.PlayerCell):
+	if getNeighbourCells().any(func(a:Vector2i):return a == Player.player.cellPos()):
 		attack(G.player)
-	var direction :Vector2i = Player.PlayerCell - cellPos()
+	var direction :Vector2i = Player.player.cellPos() - cellPos()
 	if abs(direction.x) > abs(direction.y) :
 		ejected(Vector2i(1,0)*sign(direction.x))
 	else:
@@ -58,5 +58,5 @@ func damaged(dmg:int):
 		queue_free()
 func ejected(dir : Vector2i, nbcase : int = 1):
 	for i in range(nbcase):
-		if G.getEnemy(cellPos()+dir) == -1 and cellPos()+dir != Player.PlayerCell:
+		if G.getEnemy(cellPos()+dir) == -1 and cellPos()+dir != Player.player.cellPos():
 			ToCellPos(cellPos()+dir)
