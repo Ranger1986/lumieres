@@ -1,2 +1,7 @@
-Bienvenue !
-Je suis Suzanne.
+Salut tête de crâne !
+J’ignore d’où tu viens, mais joins-toi à moi. Je suis Suzanne. Laisse-moi t'expliquer comment cet endroit fonctionne. Tout se base sur les dés que tu possèdes. Ils sont affichés à droite.
+En lançant les dés, tu as accès à des actions, pour te déplacer dans le donjon, attaquer les monstres, ou te défendre. En sélectionnant plusieurs dés, tu peux effectuer des combinaisons. Utilise-les avec intelligence !
+En éliminant un monstre, on obtient le dé qu'il contient... Mais évitons de les tuer. S'ils s'approchent assez de moi, je peux les capturer, sans les tuer. 
+Priorise la capture, d'accord ?
+
+Avançons... La sortie ne doit pas être loin...

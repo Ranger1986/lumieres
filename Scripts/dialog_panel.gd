@@ -6,7 +6,7 @@ extends Panel
 
 # Devra peut-être être mis à "off" au départ si le panneau apparâit trop tôt.
 # Il faudra alors l'activer au changement de scène (Menu -> Jeu).
-var dialogState: String = "tuto"
+static var dialogState: String = "tuto"
 @export var label: Label
 @export var btn: Button
 
@@ -34,7 +34,7 @@ func _ready() -> void:
 
 	# Texte
 	label.size = label.get_parent().size
-	label.position.y += 300
+	label.position.y += 250
 
 	var s: String = dialog(dialogState)
 	label.set_text(s)
@@ -48,17 +48,10 @@ func _process(delta: float) -> void:
 
 # Que faire quand j'appuie sur le bouton "Suivant"
 func dialogNext() -> void:
-	if dialogState == "tuto":
-		dialogState = "good"
-
-	elif dialogState == "good":
-		dialogState = "bad"
-
-	elif dialogState == "bad":
-		dialogState = "off"
-		self.get_parent().get_tree().paused = false
-		self.hide()
-		SuzanneStatic.show_suzanne()
+	dialogState = "off"
+	self.get_parent().get_tree().paused = false
+	self.hide()
+	SuzanneStatic.show_suzanne()
 	
 	var s: String = dialog(dialogState)
 	label.set_text(s)
@@ -72,10 +65,11 @@ func dialog(id: String) -> String:
 		"tuto":
 			s = "res://Ressources/tutorialDialog.txt"
 			dialogue = get_text(s)
-		"good":
+		"Level_2":
 			s = "res://Ressources/goodDialog.txt"
 			dialogue = get_random_line(s)
-		"bad":
+		"Level_3":
+			# BOSS
 			s = "res://Ressources/badDialog.txt"
 			dialogue = get_random_line(s)
 		_:
