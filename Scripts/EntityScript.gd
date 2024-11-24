@@ -33,8 +33,11 @@ func damaged(dmg:int):
 	armure=0
 	PV-=dmg
 	if PV <=0:
-		queue_free()
+		death()
 
+func death():
+	queue_free()
+	
 func attack(opp : Entity)->void:
 	var dmg : int = force + randi() % 5
 	if randi() % 100 < 1:

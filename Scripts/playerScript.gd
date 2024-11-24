@@ -8,7 +8,7 @@ static var player : Player
 
 func _ready():
 	super._ready()
-	if player == null:
+	if player == null or !is_instance_valid(player):
 		player = self
 		ToCellPos(startingPos)
 # Called every frame. 'delta' is the elapsed time since the previous frame.

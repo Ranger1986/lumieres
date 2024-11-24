@@ -13,10 +13,14 @@ var listeEnemy : Array[Enemy]
 var nbEnemy : int = 4
 @export var enemy: PackedScene
 var nextpos : Vector2i
+static var viewportSize : Vector2i
+
 
 signal S()
 
 func _ready() -> void:
+	if viewportSize==null:
+		viewportSize=get_viewport().size
 	listAct = []
 	player = find_child("PlayerSprite")
 	playerHover = player.duplicate()
@@ -28,6 +32,9 @@ func _ready() -> void:
 	tour = 0
 	
 	_ajoutEnemy(nbEnemy)
+	for enemy in listeEnemy:
+		print("add")
+		enemy.connect("loot", Callable(find_child("DiceMenu"), "_addDice"))
 	find_child("Carte").position.x = find_child("SuzanneMenu").size.x
 	var tileMap : TileMapLayer = find_child("Map")
 	offset=Vector2(find_child("SuzanneMenu").size.x,0)
@@ -86,7 +93,11 @@ func _process(delta: float) -> void:
 	else:
 		nextpos= Vector2i(-1,-1)
 		playerHover.hide()
-	pass
+	
+	if listeEnemy.size()==0:
+		#get_tree().paused()
+		get_tree().root.add_child(self.duplicate())
+		self.queue_free() 
 
 func giveAct(diceFace: int ):
 	listAct.append(diceFace)
@@ -172,7 +183,3 @@ func _input(event: InputEvent) -> void:
 			emit_signal("S")
 			grid.cleanCells()
 			listAct=[]
-	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_ESCAPE:
-		listAct.pop_back()
-		interpretAction()
-	

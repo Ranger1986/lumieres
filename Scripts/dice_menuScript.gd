@@ -11,4 +11,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if is_instance_valid(Player.player):
+		find_child("PVlabel").text = "PV: " + str(Player.player.PV) + "/" + str(Player.player._PVmax)
+		find_child("ArmureLabel").text = "Armure: " + str(Player.player.armure)
 	pass
+func _addDice():
+	var instance : Dice = find_child("DiceContainer").get_child(0).duplicate()
+	find_child("DiceContainer").add_child(instance)
+	instance.owner = self
+	instance.disabled = true
+	instance._connect()
+	

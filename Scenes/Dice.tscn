@@ -1,19 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://dufiogatxtrs0"]
+[gd_scene load_steps=9 format=3 uid="uid://dufiogatxtrs0"]
 
 [ext_resource type="Texture2D" uid="uid://37lr8siotk5f" path="res://Ressources/DiceTexture.png" id="1_oay02"]
 [ext_resource type="Texture2D" uid="uid://d37o8g0tkng6h" path="res://Ressources/DicePressed.png" id="2_fgl8v"]
 [ext_resource type="Script" path="res://Scripts/Dice.gd" id="2_tt8vw"]
 [ext_resource type="Texture2D" uid="uid://dfpunu6gt53x5" path="res://Ressources/DiceHover.png" id="3_rsl1m"]
 [ext_resource type="Texture2D" uid="uid://b7wtiggynqwgv" path="res://Ressources/DiceDisabled.png" id="4_vk2t0"]
+[ext_resource type="Texture2D" uid="uid://c8hc22fh18xcu" path="res://Ressources/Attaque.png" id="6_8liso"]
+[ext_resource type="Texture2D" uid="uid://botbq3tapgwaq" path="res://Ressources/Defense.png" id="7_6fuw8"]
+[ext_resource type="Texture2D" uid="uid://ch46xgcvqffny" path="res://Ressources/Mouvement.png" id="8_sgl81"]
 
 [node name="TextureButton" type="TextureButton"]
 offset_right = 40.0
 offset_bottom = 40.0
+focus_mode = 0
 texture_normal = ExtResource("1_oay02")
 texture_pressed = ExtResource("2_fgl8v")
 texture_hover = ExtResource("3_rsl1m")
 texture_disabled = ExtResource("4_vk2t0")
 script = ExtResource("2_tt8vw")
+textArray = Array[Texture]([ExtResource("6_8liso"), ExtResource("7_6fuw8"), ExtResource("8_sgl81")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -22,3 +27,11 @@ offset_top = 36.0
 offset_right = 40.0
 offset_bottom = 60.0
 expand_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 50.0
+offset_right = 100.0
+offset_bottom = 73.0
+text = "0"

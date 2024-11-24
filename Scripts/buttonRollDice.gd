@@ -14,10 +14,8 @@ func _button_pressed():
 	listeTextureButton = owner.find_children("", "TextureButton")
 	
 	for i in listeTextureButton.size():
-		listeTextureButton[i].texture_normal = listeTextureButton[i].normalText
-		listeTextureButton[i].using = false
-		listeTextureButton[i].disabled = false
-		var rand : int = randi() % listeTextureButton.size()
+		listeTextureButton[i].clean()
+		var rand : int = randi() % listeTextureButton[i].textArray.size()
 		var tRect : TextureRect = listeTextureButton[i].find_children("", "TextureRect")[0]
 		tRect.texture = listeTextureButton[i].textArray[rand]
 	owner.G._actionsEnemy()
@@ -26,3 +24,7 @@ func _button_pressed():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_released() and event.keycode == KEY_SPACE:
+		_button_pressed()               

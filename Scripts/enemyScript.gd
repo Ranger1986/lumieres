@@ -4,8 +4,9 @@ extends Entity
 @export var G : Gestionnaire
 
 var finTour : bool
-
-
+signal loot()
+func _ready() -> void:
+	PV=1
 func deplacementRandom() -> Vector2:
 	
 	var random : int
@@ -51,12 +52,16 @@ func _deplacement() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func damaged(dmg:int):
-	PV-=dmg
-	if PV <=0:
-		G.listeEnemy.pop_at(G.listeEnemy.find(self))
-		queue_free()
+#func damaged(dmg:int):
+	#PV-=dmg
+	#if PV <=0:
+		#G.listeEnemy.pop_at(G.listeEnemy.find(self))
+		#queue_free()
 func ejected(dir : Vector2i, nbcase : int = 1):
 	for i in range(nbcase):
 		if G.getEnemy(cellPos()+dir) == -1 and cellPos()+dir != Player.player.cellPos():
 			ToCellPos(cellPos()+dir)
+func death():
+	emit_signal("loot")
+	G.listeEnemy.pop_at(G.listeEnemy.find(self))
+	super.death()
