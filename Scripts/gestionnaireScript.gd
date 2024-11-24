@@ -30,7 +30,6 @@ func _ready() -> void:
 	_ajoutEnemy(nbEnemy)
 	for enemy in listeEnemy:
 		enemy.connect("loot", Callable(find_child("DiceMenu"), "_addDice"))
-		enemy.connect("capturable",Callable(self, "_showCapturable"))
 	find_child("Carte").position.x = find_child("SuzanneMenu").size.x
 	var tileMap : TileMapLayer = find_child("Map")
 	offset=Vector2(find_child("SuzanneMenu").size.x,0)
@@ -47,6 +46,7 @@ func _ready() -> void:
 			tileMap.set_cell(Vector2i(i,j),0,Vector2i(0,0)) 
 			grid.maxTile=Vector2i(i,j)
 	
+	_showCapturables()
 	pass # Replace with function body.
 
 func _ajoutEnemy(nbEnemy : int) -> void:
@@ -66,6 +66,7 @@ func _actionsEnemy() -> void:
 	grid.cleanCaptureCells()
 	for n in listeEnemy.size():
 		listeEnemy[n]._deplacement()
+	_showCapturables()
 	pass
 	
 func getEnemy(pos :Vector2i)->int:
@@ -183,6 +184,11 @@ func _input(event: InputEvent) -> void:
 			emit_signal("S")
 			grid.cleanCells()
 			listAct=[]
-			grid.ensureCaptureCells()
-func _showCapturable(pos :Vector2i):
-	grid.markCaptureCells([pos],3)
+			grid.cleanCaptureCells()
+			_showCapturables()
+
+func _showCapturables():
+	grid.cleanCaptureCells()
+	for en :Enemy in listeEnemy:
+		if en.PV < en.seuilPV:
+			grid.markCaptureCells([en.cellPos()],3)

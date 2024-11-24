@@ -20,6 +20,7 @@ func _button_pressed():
 		tRect.texture = listeTextureButton[i].textArray[rand]
 	owner.G._actionsEnemy()
 	Suzanne.suzanneturn=true
+	Suzanne.suzanne.modulate=Suzanne.suzanne.original_color
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
