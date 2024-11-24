@@ -7,3 +7,5 @@
 texture = ExtResource("1_b52ek")
 script = ExtResource("2_bxrvs")
 startingPos = Vector2i(5, 5)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

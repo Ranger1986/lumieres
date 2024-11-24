@@ -6,15 +6,23 @@ extends Entity
 var finTour : bool
 var seuilPV:int =10
 var listeTexture : Array
+var audio : Array
 
 signal loot()
 #signal capturable(pos:Vector2i)
 func _ready() -> void:
 	PV=20
+	
 	listeTexture.append(load("res://Ressources/AnimalDice_Bear.png"))
 	listeTexture.append(load("res://Ressources/AnimalDice_Fox.png"))
 	listeTexture.append(load("res://Ressources/AnimalDice_Rabbit.png"))
 	listeTexture.append(load("res://Ressources/AnimalDice_Owl.png"))
+	
+	audio.append(load("res://Ressources/Sounds/Attaque1.ogg"))
+	audio.append(load("res://Ressources/Sounds/Attaque2.ogg"))
+	audio.append(load("res://Ressources/Sounds/Attaque3.ogg"))
+	audio.append(load("res://Ressources/Sounds/Attaque4.ogg"))
+	
 	var rand : int = randi() % listeTexture.size()
 	self.texture = listeTexture[rand]
 		
@@ -61,15 +69,22 @@ func _deplacement() -> void:
 	
 	pass
 	
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-#func damaged(dmg:int):
-	#PV-=dmg
-	#if PV <=0:
-		#G.listeEnemy.pop_at(G.listeEnemy.find(self))
-		#queue_free()
+
+
+func damaged(dmg:int):
+	var audioStreamPlayer2D : Array = self.find_children("", "AudioStreamPlayer2D")
+	var rand : int = randi() % 4
+	audioStreamPlayer2D[0].stream = audio[rand]
+	audioStreamPlayer2D[0].playing = true
+	super.damaged(dmg)
+	pass
+	
 func ejected(dir : Vector2i, nbcase : int = 1):
 	for i in range(nbcase):
 		if G.getEnemy(cellPos()+dir) == -1 and cellPos()+dir != Player.player.cellPos():
