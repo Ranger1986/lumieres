@@ -5,12 +5,16 @@ static var suzanne :Suzanne
 static var suzanneMode :bool= false
 static var suzanneturn :bool= true
 var original_color : Color
-
+var audioCapture : Array = []
 func _ready() -> void:
 	super._ready()
 	if suzanne == null:
 		suzanne = self
 	original_color = modulate
+	
+	audioCapture.append(load("res://Ressources/Sounds/Capture1.ogg"))
+	audioCapture.append(load("res://Ressources/Sounds/Capture2.ogg"))
+	audioCapture.append(load("res://Ressources/Sounds/Capture3.ogg"))
 	
 #func _process(delta: float) -> void:
 	#var grid : GridInteractive= owner.find_child("GridInteractive")
@@ -45,7 +49,14 @@ func _input(event: InputEvent) -> void:
 			modulate.b=0
 		elif suzanneMode and grid.get_cell_source_id(pos)==3 and (cellPos()-pos).length()<=3:
 			print("NOMNOM")
+			
 			var G : Gestionnaire = owner
+			
+			var audioStreamPlayer2D : Array = self.find_children("", "AudioStreamPlayer2D")
+			var rand : int = randi() % 3
+			audioStreamPlayer2D[0].stream = audioCapture[rand]
+			audioStreamPlayer2D[0].playing = true
+			
 			G.listeEnemy[G.getEnemy(pos)].capture()
 			grid.markCells([pos],-1)
 			grid.cleanCells()

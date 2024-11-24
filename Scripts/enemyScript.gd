@@ -7,6 +7,7 @@ var finTour : bool
 var seuilPV:int =10
 var listeTexture : Array
 var audio : Array
+var audioCapture : Array
 
 signal loot()
 #signal capturable(pos:Vector2i)
