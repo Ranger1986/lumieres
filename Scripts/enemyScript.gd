@@ -7,6 +7,7 @@ var finTour : bool
 
 
 func deplacementRandom() -> Vector2:
+	
 	var random : int
 	random = randi() % 4 # Random entre 0 et 3
 	
@@ -26,14 +27,23 @@ func deplacementRandom() -> Vector2:
 
 #Déplace l'ennemi d'une case
 func _deplacement() -> void:
-	var postmp : Vector2
+	if getNeighbourCells().any(func(a:Vector2i):return a == Player.PlayerCell):
+		attack(G.player)
+	var direction :Vector2i = Player.PlayerCell - cellPos()
+	if abs(direction.x) > abs(direction.y) :
+		ejected(Vector2i(1,0)*sign(direction.x))
+	else:
+		ejected(Vector2i(0,1)*sign(direction.y))
+		
 	
-	postmp = deplacementRandom()
-	
-	while postmp.x > (G.longueurPlateau - 1) * 64 or postmp.x < 0 or postmp.y > (G.largeurPlateau - 1) *64 or postmp.y < 0:
-		postmp = deplacementRandom()
-	
-	position = postmp
+	#var postmp : Vector2
+	#
+	#postmp = deplacementRandom()
+	#
+	#while postmp.x > (G.longueurPlateau - 1) * 64 or postmp.x < 0 or postmp.y > (G.largeurPlateau - 1) *64 or postmp.y < 0:
+		#postmp = deplacementRandom()
+	#
+	#position = postmp
 	
 	pass
 	
@@ -46,3 +56,7 @@ func damaged(dmg:int):
 	if PV <=0:
 		G.listeEnemy.pop_at(G.listeEnemy.find(self))
 		queue_free()
+func ejected(dir : Vector2i, nbcase : int = 1):
+	for i in range(nbcase):
+		if G.getEnemy(cellPos()+dir) == -1 and cellPos()+dir != Player.PlayerCell:
+			ToCellPos(cellPos()+dir)

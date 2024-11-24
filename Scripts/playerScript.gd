@@ -2,12 +2,14 @@ class_name Player
 extends Entity
 
 @export var G : Gestionnaire
-
+static var PlayerCell : Vector2i
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if position != null and map != null:
+		PlayerCell = cellPos()
 	pass
 
 func attackD(opp : Entity, listAct : Array[int])->void:
@@ -17,8 +19,9 @@ func attackD(opp : Entity, listAct : Array[int])->void:
 	for i in range(atkCount):
 		var dmg : int = force + atkCount + randi() % 5
 		if randi() % 100 < movCount+1:
-			print("crit")
 			dmg*=2
-		print("dmg = ", dmg)
 		dmgTot+=dmg
 	opp.damaged(dmgTot)
+
+func defenceD(opp : Entity, listAct : Array[int])->void:
+	armure += (defence + listAct.count(DiceFace.DEF))*listAct.count(DiceFace.DEF)

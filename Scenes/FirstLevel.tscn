@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://b2dbsmeeg3bvf"]
+[gd_scene load_steps=23 format=4 uid="uid://b2dbsmeeg3bvf"]
 
 [ext_resource type="Texture2D" uid="uid://lp8n6q8jimyt" path="res://Ressources/plains.png" id="1_5wq52"]
 [ext_resource type="Script" path="res://Scripts/gestionnaireScript.gd" id="1_7rd8c"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://js0ygvtxjnqg" path="res://Ressources/cellatk.png" id="6_0m423"]
 [ext_resource type="Texture2D" uid="uid://cp5kd7t5mw71e" path="res://icon.svg" id="6_8s5dr"]
 [ext_resource type="Script" path="res://Scripts/enemyScript.gd" id="7_r5cpj"]
+[ext_resource type="Texture2D" uid="uid://c825p2hnbok5w" path="res://Ressources/cellgreen.png" id="8_4oh33"]
 [ext_resource type="PackedScene" uid="uid://2yfh1ym5qlqm" path="res://Scenes/SuzanneMenu.tscn" id="10_1wojv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vakbs"]
@@ -250,10 +251,16 @@ texture = ExtResource("6_0m423")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lggun"]
+texture = ExtResource("8_4oh33")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_gaon3"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_ltde3")
 sources/1 = SubResource("TileSetAtlasSource_qdglx")
+sources/2 = SubResource("TileSetAtlasSource_lggun")
 
 [node name="FirstLevel" type="Node2D"]
 script = ExtResource("1_7rd8c")
@@ -270,6 +277,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAA
 tile_set = SubResource("TileSet_4u0ry")
 
 [node name="GridInteractive" type="TileMapLayer" parent="Carte"]
+z_index = 1
 tile_set = SubResource("TileSet_gaon3")
 script = ExtResource("5_utiuj")
 

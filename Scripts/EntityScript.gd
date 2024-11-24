@@ -3,6 +3,8 @@ extends Node2D
 
 var map : TileMapLayer
 
+@export var defence : int = 5
+var armure : int = 0
 @export var force : int = 10
 @export var forceVar : int = 5
 @export var critrate : float = 0.01
@@ -31,3 +33,12 @@ func attack(opp : Entity)->void:
 	if randi() % 100 < 1:
 		dmg*=2
 	opp.damaged(dmg)
+	
+func getNeighbourCells():
+	return [
+		cellPos() + Vector2i(-1,0),
+		cellPos() + Vector2i(0,-1),
+		cellPos() + Vector2i(1,0),
+		cellPos() + Vector2i(0,1)
+	]
+	

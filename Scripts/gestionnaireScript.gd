@@ -10,7 +10,6 @@ var longueurPlateau : int = 12
 # Called when the node enters the scene tree for the first time.
 var tour : int
 var listeEnemy : Array[Enemy]
-var tailleListeEnemy : int
 var nbEnemy : int = 4
 @export var enemy: PackedScene
 
@@ -57,11 +56,10 @@ func _ajoutEnemy(nbEnemy : int) -> void:
 		nodeEnemy.offset = nodeEnemy.texture.get_size()/2
 		
 		listeEnemy.append(nodeEnemy)
-		tailleListeEnemy += 1
 	pass
 
 func _actionsEnemy() -> void:
-	for n in tailleListeEnemy:
+	for n in listeEnemy.size():
 		listeEnemy[n]._deplacement()
 	pass
 	
@@ -107,7 +105,8 @@ func interpretAction():
 	if nbmov == listAct.size():
 		for i in range(-nbmov, nbmov+1):
 			for j in range(-nbmov, nbmov+1):
-				if ((abs(i)+abs(j))<=nbmov):
+				if ((abs(i)+abs(j))<=nbmov 
+					and getEnemy(player.cellPos()+Vector2i(i,j))==-1):
 					grid.markCells([player.cellPos()+Vector2i(i,j)],0)
 	elif nbatk == listAct.size():
 		grid.markCells([player.cellPos()+Vector2i(1,0),
@@ -115,7 +114,7 @@ func interpretAction():
 			player.cellPos()+Vector2i(-1,0),
 			player.cellPos()+Vector2i(0,-1)], 1)
 	elif nbdef == listAct.size():
-		pass
+		grid.markCells([player.cellPos()],2)
 					
 	elif nbmov+nbdef == listAct.size():
 		for i in range(-nbmov, nbmov+1):
@@ -126,14 +125,22 @@ func interpretAction():
 		for i in range(-nbmov-1, nbmov+1+1):
 			for j in range(-nbmov-1, nbmov+1+1):
 				if i in range(-nbmov, nbmov+1) and j in range(-nbmov, nbmov+1) and ((abs(i)+abs(j))<=nbmov):
-					grid.markCells([player.cellPos()+Vector2i(i,j)],0)
+					if (getEnemy(player.cellPos()+Vector2i(i,j))==-1):
+						grid.markCells([player.cellPos()+Vector2i(i,j)],0)
+					else:
+						grid.markCells([player.cellPos()+Vector2i(i,j)],1)
 				elif ((abs(i)+abs(j))<=nbmov+2): 
 					grid.markCells([player.cellPos()+Vector2i(i,j)],1)
+				
 	elif nbdef+nbatk == listAct.size():
 		grid.markCells([player.cellPos()+Vector2i(1,0),
 			player.cellPos()+Vector2i(0,1),
 			player.cellPos()+Vector2i(-1,0),
 			player.cellPos()+Vector2i(0,-1)], 1)
+			
+	if nbdef == 0 or nbmov !=0:
+		grid.markCells([player.cellPos()],-1)
+		
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
@@ -145,13 +152,18 @@ func _input(event: InputEvent) -> void:
 				player.ToCellPos(nextpos)
 				acted = true
 			elif(listAct.count(DiceFace.DEF)!=0):
-				listeEnemy[getEnemy(nextpos)].ToCellPos(listeEnemy[getEnemy(nextpos)].cellPos() + Vector2i((nextpos - player.cellPos())/(nextpos - player.cellPos()).length()*listAct.count(1)))
+				listeEnemy[getEnemy(nextpos)].ejected(Vector2i(pos - player.cellPos())/(pos - player.cellPos()).length(),listAct.count(1))
+				#listeEnemy[getEnemy(nextpos)].ToCellPos(listeEnemy[getEnemy(nextpos)].cellPos() + Vector2i((nextpos - player.cellPos())/(nextpos - player.cellPos()).length()*listAct.count(1)))
 				player.ToCellPos(nextpos)
 				acted = true
 		if (getEnemy(pos)!=-1 and grid.get_cell_source_id(pos)==1):
-			player.attackD(listeEnemy[getEnemy(pos)],listAct)
-			if(listAct.count(DiceFace.DEF)!=0):
-				listeEnemy[getEnemy(pos)].ToCellPos(listeEnemy[getEnemy(pos)].cellPos() + Vector2i((pos - player.cellPos())/(pos - player.cellPos()).length()*listAct.count(1)))
+			var en : Enemy = listeEnemy[getEnemy(pos)]
+			player.attackD(en,listAct)
+			if(listAct.count(DiceFace.DEF)!=0 and is_instance_valid(en)):
+				en.ejected(Vector2i(pos - player.cellPos())/(pos - player.cellPos()).length(),listAct.count(1))
+			acted = true
+		if (pos == player.cellPos() and grid.get_cell_source_id(pos)==2):
+			print("DEF!")
 			acted = true
 			
 		
