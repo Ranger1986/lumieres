@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://b2dbsmeeg3bvf"]
+[gd_scene load_steps=28 format=4 uid="uid://b2dbsmeeg3bvf"]
 
 [ext_resource type="Texture2D" uid="uid://lp8n6q8jimyt" path="res://Ressources/plains.png" id="1_5wq52"]
 [ext_resource type="Script" path="res://Scripts/gestionnaireScript.gd" id="1_7rd8c"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://2yfh1ym5qlqm" path="res://Scenes/SuzanneMenu.tscn" id="10_1wojv"]
 [ext_resource type="Texture2D" uid="uid://7jus0ir84agj" path="res://Ressources/Player.png" id="12_gt8hd"]
 [ext_resource type="PackedScene" uid="uid://c3qxqtvwc8vnp" path="res://Scenes/Suzanne.tscn" id="13_cr5f4"]
+[ext_resource type="AudioStream" uid="uid://c3ikap16bpcdw" path="res://Ressources/Sounds/melody-ambient-particles.mp3" id="17_4neik"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vakbs"]
 texture = ExtResource("1_5wq52")
@@ -310,3 +311,7 @@ offset_bottom = 650.0
 z_index = 2
 offset_bottom = 650.0
 G = NodePath("..")
+
+[node name="SonAmbient" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_4neik")
+autoplay = true
